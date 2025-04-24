@@ -225,7 +225,7 @@ func (s *IntegrationTestSuite) SetupSuite() {
 	require.NoError(s.T(), err)
 
 	// create Provider blockchain declaration
-	_, err = cli.TxCreateProviderExec(
+	res, err = cli.TxCreateProviderExec(
 		s.validator.ClientCtx,
 		s.keyProvider.GetAddress(),
 		fmt.Sprintf("%s/%s", s.network.BaseDir, fstat.Name()),
@@ -575,6 +575,7 @@ func TestIntegrationTestSuite(t *testing.T) {
 	suite.Run(t, new(E2EContainerToContainer))
 	suite.Run(t, new(E2EAppNodePort))
 	suite.Run(t, new(E2EDeploymentUpdate))
+	suite.Run(t, new(E2EDeploymentCreate))
 	suite.Run(t, new(E2EApp))
 	suite.Run(t, new(E2EPersistentStorageDefault))
 	suite.Run(t, new(E2EPersistentStorageBeta2))
